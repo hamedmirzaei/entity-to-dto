@@ -1,0 +1,25 @@
+POST http://localhost:8081/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Reza",
+  "lastName": "Mirzaei",
+  "username": "rezamirzaei",
+  "password": "abcd1234",
+  "addressDto": {
+    "city": "Ilam",
+    "street": "Edalat",
+    "alley": "Adl 3",
+    "floor": 2,
+    "number": 1,
+    "postalCode": "2222222222"
+  }
+}
+
+###
+GET http://localhost:8081/api/users/1
+
+###
+GET http://localhost:8081/api/users
+
+###
