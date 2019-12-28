@@ -18,6 +18,7 @@ public class UserDto implements Serializable {
     @Length(min = 5, max = 15)
     private String password;
     private AddressDto addressDto;
+    private String skills;
 
     public String getFullName() {
         return fullName;
@@ -49,5 +50,13 @@ public class UserDto implements Serializable {
 
     public void setAddressDto(AddressDto addressDto) {
         this.addressDto = addressDto;
+    }
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills;
     }
 }

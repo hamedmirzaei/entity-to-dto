@@ -2,6 +2,7 @@ package spring.boot.entity.dto.mapper;
 
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
+import spring.boot.entity.dto.domain.SkillEntity;
 import spring.boot.entity.dto.domain.UserEntity;
 import spring.boot.entity.dto.dto.UserDto;
 
@@ -17,11 +18,19 @@ public interface UserMapper {
      * in target (i.e. here target is dto) while converting
      * <p>
      * 2. when the name changed between dto/entity it should be mentioned in the mapping annotation
+     * <p>
+     * 3. to convert collections to single and vice versa, you should explicitly mention the ignore
      */
-    @Mappings({@Mapping(source = "address", target = "addressDto")})
+    @Mappings({
+            @Mapping(source = "address", target = "addressDto"),
+            @Mapping(target = "skills", ignore = true)
+    })
     UserDto toDto(UserEntity userEntity);
 
-    @Mappings({@Mapping(source = "addressDto", target = "address")})
+    @Mappings({
+            @Mapping(source = "addressDto", target = "address"),
+            @Mapping(target = "skills", ignore = true)
+    })
     UserEntity fromDto(UserDto userDto);
 
     /**
@@ -31,6 +40,8 @@ public interface UserMapper {
     @AfterMapping
     default void setAfterMapping(@MappingTarget UserDto userDto, UserEntity userEntity) {
         userDto.setFullName(userEntity.getFirstName() + " " + userEntity.getLastName());
+        userDto.setSkills(userEntity.getSkills().stream().map(SkillEntity::getName)
+                .reduce((s1, s2) -> s1 + "," + s2).orElse("No Skill"));
     }
 
     @AfterMapping

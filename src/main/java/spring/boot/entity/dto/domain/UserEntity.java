@@ -5,13 +5,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "USER_TABLE")
 public class UserEntity implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -31,6 +31,10 @@ public class UserEntity implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private AddressEntity address;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_SKILL", joinColumns = {@JoinColumn(referencedColumnName = "ID", name = "USERID")}, inverseJoinColumns = {@JoinColumn(referencedColumnName = "ID", name = "SKILLID")})
+    private List<SkillEntity> skills;
 
     public Long getId() {
         return id;
@@ -78,5 +82,13 @@ public class UserEntity implements Serializable {
 
     public void setAddress(AddressEntity address) {
         this.address = address;
+    }
+
+    public List<SkillEntity> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<SkillEntity> skills) {
+        this.skills = skills;
     }
 }
