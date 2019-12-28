@@ -6,6 +6,8 @@ import spring.boot.entity.dto.domain.SkillEntity;
 import spring.boot.entity.dto.domain.UserEntity;
 import spring.boot.entity.dto.dto.UserDto;
 
+import java.util.List;
+
 @Mapper(uses = {AddressMapper.class})
 public interface UserMapper {
 
@@ -25,13 +27,17 @@ public interface UserMapper {
             @Mapping(source = "address", target = "addressDto"),
             @Mapping(target = "skills", ignore = true)
     })
-    UserDto toDto(UserEntity userEntity);
+    UserDto toDTO(UserEntity userEntity);
+
+    List<UserDto> toDTOs(List<UserEntity> userEntities);
 
     @Mappings({
             @Mapping(source = "addressDto", target = "address"),
             @Mapping(target = "skills", ignore = true)
     })
-    UserEntity fromDto(UserDto userDto);
+    UserEntity toEntity(UserDto userDto);
+
+    List<UserEntity> toEntities(List<UserDto> userDtos);
 
     /**
      * ************************************* AFTER MAPPINGS *****************************************

@@ -7,14 +7,18 @@ import org.mapstruct.factory.Mappers;
 import spring.boot.entity.dto.domain.AddressEntity;
 import spring.boot.entity.dto.dto.AddressDto;
 
+import java.util.List;
+
 @Mapper
 public interface AddressMapper {
 
     AddressMapper INSTANCE = Mappers.getMapper(AddressMapper.class);
 
     @Mappings({})
-    AddressDto toDto(AddressEntity addressEntity);
+    AddressDto toDTO(AddressEntity addressEntity);
+
+    List<AddressDto> toDTOs(List<AddressEntity> addressEntities);
 
     @InheritInverseConfiguration
-    AddressEntity fromDto(AddressDto addressDto);
+    AddressEntity toEntity(AddressDto addressDto);
 }

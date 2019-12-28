@@ -10,7 +10,6 @@ import spring.boot.entity.dto.mapper.AddressMapper;
 import spring.boot.entity.dto.repository.AddressRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -19,19 +18,19 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Response<List<AddressDto>> findAll() {
-        return new Response<>(addressRepository.findAll().stream().map(ue -> AddressMapper.INSTANCE.toDto(ue)).collect(Collectors.toList()));
+        return new Response<>(AddressMapper.INSTANCE.toDTOs(addressRepository.findAll()));
     }
 
     @Override
     public Response<AddressDto> findUserById(Long id) throws AddressException.NotFoundException {
         AddressEntity addressEntity = addressRepository.findById(id).orElseThrow(() -> new AddressException.NotFoundException(id));
-        AddressDto addressDto = AddressMapper.INSTANCE.toDto(addressEntity);
+        AddressDto addressDto = AddressMapper.INSTANCE.toDTO(addressEntity);
         return new Response<>(addressDto);
     }
 
     @Override
     public Response<AddressDto> saveAddress(AddressDto addressDto) throws AddressException.PersistException {
-        AddressEntity addressEntity = AddressMapper.INSTANCE.fromDto(addressDto);
+        AddressEntity addressEntity = AddressMapper.INSTANCE.toEntity(addressDto);
         try {
             addressRepository.save(addressEntity);
         } catch (Exception e) {

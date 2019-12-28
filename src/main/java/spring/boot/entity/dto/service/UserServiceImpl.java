@@ -10,7 +10,6 @@ import spring.boot.entity.dto.mapper.UserMapper;
 import spring.boot.entity.dto.repository.UserRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,19 +18,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response<List<UserDto>> findAll() {
-        return new Response<>(userRepository.findAll().stream().map(ue -> UserMapper.INSTANCE.toDto(ue)).collect(Collectors.toList()));
+        return new Response<>(UserMapper.INSTANCE.toDTOs(userRepository.findAll()));
     }
 
     @Override
     public Response<UserDto> findUserById(Long id) throws UserException.NotFoundException {
         UserEntity userEntity = userRepository.findById(id).orElseThrow(() -> new UserException.NotFoundException(id));
-        UserDto userDto = UserMapper.INSTANCE.toDto(userEntity);
+        UserDto userDto = UserMapper.INSTANCE.toDTO(userEntity);
         return new Response<>(userDto);
     }
 
     @Override
     public Response<UserDto> saveUser(UserDto userDto) throws UserException.DuplicateUsernameException {
-        UserEntity userEntity = UserMapper.INSTANCE.fromDto(userDto);
+        UserEntity userEntity = UserMapper.INSTANCE.toEntity(userDto);
         try {
             userRepository.save(userEntity);
         } catch (Exception e) {
