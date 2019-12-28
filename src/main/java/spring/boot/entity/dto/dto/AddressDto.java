@@ -3,9 +3,12 @@ package spring.boot.entity.dto.dto;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddressDto {
+    @NotNull
     private String city;
     private String street;
     private String alley;

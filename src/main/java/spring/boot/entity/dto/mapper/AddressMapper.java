@@ -1,7 +1,7 @@
 package spring.boot.entity.dto.mapper;
 
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 import spring.boot.entity.dto.domain.AddressEntity;
@@ -12,23 +12,9 @@ public interface AddressMapper {
 
     AddressMapper INSTANCE = Mappers.getMapper(AddressMapper.class);
 
-    @Mappings({
-            @Mapping(source = "city", target = "city"),
-            @Mapping(source = "street", target = "street"),
-            @Mapping(source = "alley", target = "alley"),
-            @Mapping(source = "alley", target = "floor"),
-            @Mapping(source = "alley", target = "number"),
-            @Mapping(source = "alley", target = "postalCode")
-    })
+    @Mappings({})
     AddressDto toDto(AddressEntity addressEntity);
 
-    @Mappings({
-            @Mapping(source = "city", target = "city"),
-            @Mapping(source = "street", target = "street"),
-            @Mapping(source = "alley", target = "alley"),
-            @Mapping(source = "alley", target = "floor"),
-            @Mapping(source = "alley", target = "number"),
-            @Mapping(source = "alley", target = "postalCode")
-    })
+    @InheritInverseConfiguration
     AddressEntity fromDto(AddressDto addressDto);
 }

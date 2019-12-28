@@ -8,7 +8,7 @@ import spring.boot.entity.dto.exception.AddressException;
 import spring.boot.entity.dto.exception.UserException;
 
 @RestControllerAdvice
-public class UserExceptionAdvice {
+public class ExceptionAdvice {
 
     @ExceptionHandler(UserException.NotFoundException.class)
     public Response handleUserNotFoundException(UserException.NotFoundException ex) {
