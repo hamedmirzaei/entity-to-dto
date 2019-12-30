@@ -1,5 +1,7 @@
 package spring.boot.entity.dto.service;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.boot.entity.dto.domain.AddressEntity;
@@ -12,8 +14,10 @@ import spring.boot.entity.dto.repository.AddressRepository;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
 
+    @NonNull
     private AddressRepository addressRepository;
 
     @Override
