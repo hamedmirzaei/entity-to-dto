@@ -1,6 +1,8 @@
 package spring.boot.entity.dto.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import spring.boot.entity.dto.domain.UserEntity;
 import spring.boot.entity.dto.dto.EntityDtoResponse;
@@ -12,9 +14,10 @@ import spring.boot.entity.dto.repository.UserRepository;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public EntityDtoResponse<List<UserDto>> findAll() {
@@ -39,8 +42,4 @@ public class UserServiceImpl implements UserService {
         return new EntityDtoResponse<>(userDto);
     }
 
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 }
