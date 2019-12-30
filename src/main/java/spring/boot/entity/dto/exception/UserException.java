@@ -1,9 +1,13 @@
 package spring.boot.entity.dto.exception;
 
+import spring.boot.entity.dto.annotations.ErrorMessage;
+import spring.boot.entity.dto.enums.ErrorCode;
+
 public class UserException {
 
-    public static class NotFoundException extends Exception {
-        private Long id;
+    @ErrorMessage(code = ErrorCode.USER_NOT_FOUND)
+    public static class NotFoundException extends BaseException {
+        private final Long id;
 
         public NotFoundException(Long id) {
             super("User not found with id = " + id);
@@ -15,8 +19,9 @@ public class UserException {
         }
     }
 
-    public static class DuplicateUsernameException extends Exception {
-        private String username;
+    @ErrorMessage(code = ErrorCode.DUPLICATE_USERNAME)
+    public static class DuplicateUsernameException extends BaseException {
+        private final String username;
 
         public DuplicateUsernameException(String username) {
             super("User with username=" + username + " already exist");

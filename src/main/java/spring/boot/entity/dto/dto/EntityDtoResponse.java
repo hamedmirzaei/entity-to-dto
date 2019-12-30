@@ -2,36 +2,36 @@ package spring.boot.entity.dto.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import spring.boot.entity.dto.enums.MessageCodeType;
+import spring.boot.entity.dto.enums.ErrorCode;
 
 @Getter
 @Setter
 public class EntityDtoResponse<T> {
-    private MessageCodeType messageCode;
+    private ErrorCode messageCode;
     private String description;
     private Long longValue;
     private String stringValue;
     private T objectValue;
 
-    public EntityDtoResponse(MessageCodeType messageCode, String description, Long longValue) {
+    public EntityDtoResponse(ErrorCode messageCode, String description, Long longValue) {
         this.messageCode = messageCode;
         this.description = description;
         this.longValue = longValue;
     }
 
-    public EntityDtoResponse(MessageCodeType messageCode, String description, String stringValue) {
+    public EntityDtoResponse(ErrorCode messageCode, String description, String stringValue) {
         this.messageCode = messageCode;
         this.description = description;
         this.stringValue = stringValue;
     }
 
-    public EntityDtoResponse(MessageCodeType messageCode, String description, T objectValue) {
+    public EntityDtoResponse(ErrorCode messageCode, String description, T objectValue) {
         this.messageCode = messageCode;
         this.description = description;
         this.objectValue = objectValue;
     }
 
-    public EntityDtoResponse(MessageCodeType messageCode, String description) {
+    public EntityDtoResponse(ErrorCode messageCode, String description) {
         this.messageCode = messageCode;
         this.description = description;
     }
@@ -52,15 +52,15 @@ public class EntityDtoResponse<T> {
     }
 
     private void setSuccess() {
-        this.messageCode = MessageCodeType.SUCCESS;
+        this.messageCode = ErrorCode.SUCCESS;
         this.description = "Successfully done";
     }
 
-    public MessageCodeType getMessageCode() {
+    public ErrorCode getMessageCode() {
         return messageCode;
     }
 
-    public void setMessageCode(MessageCodeType messageCode) {
+    public void setMessageCode(ErrorCode messageCode) {
         this.messageCode = messageCode;
     }
 
