@@ -5,10 +5,11 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum ErrorCode {
     UNKNOWN("USR-XXXX"),
     SUCCESS("USR-0000"),
-    USER_NOT_FOUND("USR-0001"),
-    DUPLICATE_USERNAME("USR-0002"),
-    ADDRESS_NOT_FOUND("USR-0003"),
-    ADDRESS_PERSIST_ERROR("USR-0004");
+    INTERNAL_SERVER_ERROR("USR-0001"),
+    USER_NOT_FOUND("USR-0002"),
+    DUPLICATE_USERNAME("USR-0003"),
+    ADDRESS_NOT_FOUND("USR-0004"),
+    ADDRESS_PERSIST_ERROR("USR-0005");
 
     String code;
 
