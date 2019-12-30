@@ -11,7 +11,7 @@ import spring.boot.entity.dto.exception.BaseException;
 public class ExceptionAdvice {
 
     @ExceptionHandler(BaseException.class)
-    public EntityDtoResponse<Object> handleUserNotFoundException(BaseException ex) {
+    public EntityDtoResponse<Object> handleBaseException(BaseException ex) {
         ErrorMessage errorMessage = ex.getClass().getDeclaredAnnotation(ErrorMessage.class);
         if (errorMessage != null) {
             return new EntityDtoResponse<>(errorMessage.code(), ex.getMessage());
