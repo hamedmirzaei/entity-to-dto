@@ -33,13 +33,8 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public EntityDtoResponse<AddressDto> saveAddress(AddressDto addressDto) throws AddressException.PersistException {
-        AddressEntity addressEntity = AddressMapper.INSTANCE.toEntity(addressDto);
-        try {
-            addressRepository.save(addressEntity);
-        } catch (Exception e) {
-            throw new AddressException.PersistException();
-        }
+    public EntityDtoResponse<AddressDto> saveAddress(AddressDto addressDto) {
+        addressRepository.save(AddressMapper.INSTANCE.toEntity(addressDto));
         return new EntityDtoResponse<>(addressDto);
     }
 

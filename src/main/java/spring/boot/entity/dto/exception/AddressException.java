@@ -8,24 +8,17 @@ public class AddressException {
     private AddressException() {
     }
 
-    @ErrorMessage(code = ErrorCode.ADDRESS_NOT_FOUND)
+    @ErrorMessage(code = ErrorCode.ADDRESS_NOT_FOUND, messageKey = "exception.address.not.found")
     public static class NotFoundException extends BaseException {
         private final Long id;
 
         public NotFoundException(Long id) {
-            super("Address not found with id = " + id);
+            super(new Object[]{id});
             this.id = id;
         }
 
         public Long getId() {
             return id;
-        }
-    }
-
-    @ErrorMessage(code = ErrorCode.ADDRESS_PERSIST_ERROR)
-    public static class PersistException extends BaseException {
-        public PersistException() {
-            super("Persist exception during saving address");
         }
     }
 

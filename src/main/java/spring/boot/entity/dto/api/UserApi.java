@@ -1,10 +1,11 @@
 package spring.boot.entity.dto.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import spring.boot.entity.dto.dto.UserDto;
+import spring.boot.entity.dto.configs.LocalizedMessageSource;
 import spring.boot.entity.dto.dto.EntityDtoResponse;
+import spring.boot.entity.dto.dto.UserDto;
 import spring.boot.entity.dto.exception.UserException;
 import spring.boot.entity.dto.service.UserService;
 
@@ -12,8 +13,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
+@RequiredArgsConstructor
 public class UserApi {
-    private UserService userService;
+
+    private final UserService userService;
+    private final LocalizedMessageSource messageSource;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public EntityDtoResponse<List<UserDto>> getAllUsers() {
@@ -30,8 +34,4 @@ public class UserApi {
         return userService.saveUser(userDto);
     }
 
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
 }

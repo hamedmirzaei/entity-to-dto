@@ -9,4 +9,5 @@ import java.lang.annotation.*;
 @Documented
 public @interface ErrorMessage {
     ErrorCode code() default ErrorCode.UNKNOWN;
+    String messageKey() default "exception.default.message";
 }

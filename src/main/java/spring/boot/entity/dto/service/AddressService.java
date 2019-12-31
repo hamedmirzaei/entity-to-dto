@@ -11,6 +11,6 @@ public interface AddressService {
 
     EntityDtoResponse<AddressDto> findUserById(Long id) throws AddressException.NotFoundException;
 
-    EntityDtoResponse<AddressDto> saveAddress(AddressDto addressDto) throws AddressException.PersistException;
+    EntityDtoResponse<AddressDto> saveAddress(AddressDto addressDto);
 
 }
