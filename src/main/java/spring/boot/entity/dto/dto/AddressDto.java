@@ -1,5 +1,6 @@
 package spring.boot.entity.dto.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -9,11 +10,17 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class AddressDto {
     @NotNull
+    @ApiModelProperty(notes = "city name")
     private String city;
+    @ApiModelProperty(notes = "street name")
     private String street;
+    @ApiModelProperty(notes = "alley name")
     private String alley;
+    @ApiModelProperty(notes = "floor number")
     private Integer floor;
+    @ApiModelProperty(notes = "house number")
     private Integer number;
+    @ApiModelProperty(notes = "postal code")
     private String postalCode;
 
     public String getCity() {

@@ -1,5 +1,6 @@
 package spring.boot.entity.dto.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -11,13 +12,18 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class UserDto implements Serializable {
     @NotNull
+    @ApiModelProperty(notes = "first name concatenated by last name of user")
     private String fullName;
     @NotNull
+    @ApiModelProperty(notes = "username of user")
     private String username;
     @NotNull
     @Length(min = 5, max = 15)
+    @ApiModelProperty(notes = "password of user")
     private String password;
+    @ApiModelProperty(notes = "address of user")
     private AddressDto addressDto;
+    @ApiModelProperty(notes = "skills of user separated by comma")
     private String skills;
 
     public String getFullName() {

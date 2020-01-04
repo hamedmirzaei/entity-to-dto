@@ -1,5 +1,6 @@
 package spring.boot.entity.dto.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import spring.boot.entity.dto.enums.ErrorCode;
@@ -7,10 +8,15 @@ import spring.boot.entity.dto.enums.ErrorCode;
 @Getter
 @Setter
 public class EntityDtoResponse<T> {
+    @ApiModelProperty(notes = "The response code")
     private ErrorCode messageCode;
+    @ApiModelProperty(notes = "The response description")
     private String description;
+    @ApiModelProperty(notes = "The response value when it is a long")
     private Long longValue;
+    @ApiModelProperty(notes = "The response value when it is a string")
     private String stringValue;
+    @ApiModelProperty(notes = "The response value when it is an object")
     private T objectValue;
 
     public EntityDtoResponse(ErrorCode messageCode, String description, Long longValue) {
