@@ -9,9 +9,11 @@ import spring.boot.entity.dto.exception.UserException;
 import spring.boot.entity.dto.mapper.UserMapper;
 import spring.boot.entity.dto.repository.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 

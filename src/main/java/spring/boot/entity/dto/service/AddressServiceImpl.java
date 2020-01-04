@@ -10,9 +10,11 @@ import spring.boot.entity.dto.exception.AddressException;
 import spring.boot.entity.dto.mapper.AddressMapper;
 import spring.boot.entity.dto.repository.AddressRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
 

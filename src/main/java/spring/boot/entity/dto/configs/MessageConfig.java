@@ -13,8 +13,7 @@ public class MessageConfig {
         source.setBasenames("i18/messages");
         source.setDefaultEncoding("UTF-8");
         source.setUseCodeAsDefaultMessage(true);
-        LocalizedMessageSource localizedMessageSource = new LocalizedMessageSource(source);
-        return localizedMessageSource;
+        return new LocalizedMessageSource(source);
     }
 
 
