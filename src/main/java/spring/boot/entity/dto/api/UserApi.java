@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import spring.boot.entity.dto.annotations.RestCallForbidden;
 import spring.boot.entity.dto.dto.EntityDtoResponse;
 import spring.boot.entity.dto.dto.UserDto;
 import spring.boot.entity.dto.exception.UserException;
@@ -23,6 +24,13 @@ public class UserApi {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "View a list of all users", response = EntityDtoResponse.class)
     public EntityDtoResponse<List<UserDto>> getAllUsers() {
+        return userService.findAll();
+    }
+
+    @GetMapping(value = "/forbidden", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "View a list of all users - Forbidden Version", response = EntityDtoResponse.class)
+    @RestCallForbidden
+    public EntityDtoResponse<List<UserDto>> getAllUsersForbidden() {
         return userService.findAll();
     }
 
