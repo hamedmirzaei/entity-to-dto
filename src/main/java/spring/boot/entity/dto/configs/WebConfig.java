@@ -1,6 +1,6 @@
 package spring.boot.entity.dto.configs;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -12,12 +12,11 @@ import spring.boot.entity.dto.configs.interceptor.RestCallForbiddenInterceptor;
 
 @Configuration
 @EnableWebMvc
+@RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
-    @Autowired
-    RestCallForbiddenInterceptor restCallForbiddenInterceptor;
-    @Autowired
-    MaintenanceTimeInterceptor maintenanceTimeInterceptor;
+    private final RestCallForbiddenInterceptor restCallForbiddenInterceptor;
+    private final MaintenanceTimeInterceptor maintenanceTimeInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

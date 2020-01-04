@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddressDto {
+
     @NotNull
     @ApiModelProperty(notes = "city name")
     private String city;

@@ -7,6 +7,7 @@ import spring.boot.entity.dto.exception.AddressException;
 import java.util.List;
 
 public interface AddressService {
+
     /**
      * This method returns all the address DTOs
      *

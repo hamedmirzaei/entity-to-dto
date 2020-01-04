@@ -7,6 +7,7 @@ import spring.boot.entity.dto.exception.UserException;
 import java.util.List;
 
 public interface UserService {
+
     /**
      * This method returns all the user DTOs
      *

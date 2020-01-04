@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ErrorResponse {
+
     @ApiModelProperty(notes = "The response description")
     private String message;
 }

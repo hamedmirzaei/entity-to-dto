@@ -8,6 +8,7 @@ import spring.boot.entity.dto.enums.ErrorCode;
 @Getter
 @Setter
 public class EntityDtoResponse<T> {
+
     @ApiModelProperty(notes = "The response code")
     private ErrorCode messageCode;
     @ApiModelProperty(notes = "The response description")

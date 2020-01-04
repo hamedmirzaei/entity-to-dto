@@ -11,6 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto implements Serializable {
+
     @NotNull
     @ApiModelProperty(notes = "first name concatenated by last name of user")
     private String fullName;

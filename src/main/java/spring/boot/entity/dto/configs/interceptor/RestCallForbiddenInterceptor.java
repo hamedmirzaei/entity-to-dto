@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
 
 @Component
 public class RestCallForbiddenInterceptor implements HandlerInterceptor {
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // skip swaggers
