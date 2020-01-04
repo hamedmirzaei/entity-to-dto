@@ -14,11 +14,15 @@ import java.lang.reflect.Method;
 public class RestCallForbiddenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // skip swaggers
+        if (request.getRequestURI().startsWith("/swagger"))
+            return true;
+        // check for RestCallForbidden annotation to handle it
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             Method method = handlerMethod.getMethod();
             if (method.isAnnotationPresent(RestCallForbidden.class) || method.getDeclaringClass().isAnnotationPresent(RestCallForbidden.class)) {
-                response.setStatus(HttpStatus.FORBIDDEN.value());
+                response.sendRedirect("/error/forbidden");
                 return false;// means do not continue, it is done here
             }
         }
