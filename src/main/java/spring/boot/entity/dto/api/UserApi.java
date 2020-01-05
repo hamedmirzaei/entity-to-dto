@@ -3,6 +3,7 @@ package spring.boot.entity.dto.api;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import spring.boot.entity.dto.annotations.RestCallForbidden;
@@ -37,6 +38,14 @@ public class UserApi {
     @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "View a user by its id", response = EntityDtoResponse.class)
     public EntityDtoResponse<UserDto> getUser(@PathVariable Long id) throws UserException.NotFoundException {
+        return userService.findUserById(id);
+    }
+
+    @GetMapping(value = "{id}/cached", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "View a user by its id - cached support", response = EntityDtoResponse.class)
+    @Cacheable(value = "user")
+    public EntityDtoResponse<UserDto> getUserCached(@PathVariable Long id) throws UserException.NotFoundException, InterruptedException {
+        Thread.sleep(20000);
         return userService.findUserById(id);
     }
 

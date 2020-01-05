@@ -1,3 +1,4 @@
+### save a user
 POST http://localhost:8081/api/users
 Content-Type: application/json
 
@@ -15,16 +16,12 @@ Content-Type: application/json
   }
 }
 
-###
-GET http://localhost:8081/api/users/3
-
-###
+### get a single user
+GET http://localhost:8081/api/users/1
+### get a single user with chache mechanism, it will sleep for 20 secs in the first run
+GET http://localhost:8081/api/users/1/cached
+### does not exists
+GET http://localhost:8081/api/users/10
+### get list of users
 GET http://localhost:8081/api/users
-
-###
-GET http://localhost:8081/api/users/test1
-
-###
-GET http://localhost:8081/api/users/test2
-
 ###
