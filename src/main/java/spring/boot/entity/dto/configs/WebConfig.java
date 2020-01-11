@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import spring.boot.entity.dto.configs.interceptor.LoggerInterceptor;
 import spring.boot.entity.dto.configs.interceptor.MaintenanceTimeInterceptor;
+import spring.boot.entity.dto.configs.interceptor.RequestLimitInterceptor;
 import spring.boot.entity.dto.configs.interceptor.RestCallForbiddenInterceptor;
 
 @Configuration
@@ -19,12 +20,14 @@ public class WebConfig implements WebMvcConfigurer {
     private final RestCallForbiddenInterceptor restCallForbiddenInterceptor;
     private final MaintenanceTimeInterceptor maintenanceTimeInterceptor;
     private final LoggerInterceptor loggerInterceptor;
+    private final RequestLimitInterceptor requestLimitInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loggerInterceptor).order(Ordered.HIGHEST_PRECEDENCE);
-        registry.addInterceptor(restCallForbiddenInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 1);
-        registry.addInterceptor(maintenanceTimeInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 2);
+        registry.addInterceptor(requestLimitInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 1);
+        registry.addInterceptor(restCallForbiddenInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 2);
+        registry.addInterceptor(maintenanceTimeInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 3);
     }
 
     @Override

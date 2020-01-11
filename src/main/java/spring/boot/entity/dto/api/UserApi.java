@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import spring.boot.entity.dto.annotations.Limited;
 import spring.boot.entity.dto.annotations.RestCallForbidden;
 import spring.boot.entity.dto.dto.EntityDtoResponse;
 import spring.boot.entity.dto.dto.UserDto;
@@ -24,6 +25,7 @@ public class UserApi {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "View a list of all users", response = EntityDtoResponse.class)
+    @Limited(requestsPerMinute = 4)
     public EntityDtoResponse<List<UserDto>> getAllUsers() {
         return userService.findAll();
     }
