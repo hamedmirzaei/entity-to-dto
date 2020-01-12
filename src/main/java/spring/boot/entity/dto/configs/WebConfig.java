@@ -19,14 +19,16 @@ public class WebConfig implements WebMvcConfigurer {
     private final RequestLimitInterceptor requestLimitInterceptor;
     private final RestCallForbiddenInterceptor restCallForbiddenInterceptor;
     private final MaintenanceTimeInterceptor maintenanceTimeInterceptor;
+    private final CorsInterceptor corsInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loggerInterceptor).order(Ordered.HIGHEST_PRECEDENCE);
-        registry.addInterceptor(securityInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 1);
-        registry.addInterceptor(requestLimitInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 2);
-        registry.addInterceptor(restCallForbiddenInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 3);
-        registry.addInterceptor(maintenanceTimeInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 4);
+        registry.addInterceptor(corsInterceptor).order(Ordered.HIGHEST_PRECEDENCE);
+        registry.addInterceptor(loggerInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 1);
+        registry.addInterceptor(securityInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 2);
+        registry.addInterceptor(requestLimitInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 3);
+        registry.addInterceptor(restCallForbiddenInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 4);
+        registry.addInterceptor(maintenanceTimeInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 5);
     }
 
     @Override
