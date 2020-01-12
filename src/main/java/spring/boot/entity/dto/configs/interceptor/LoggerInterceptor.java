@@ -15,12 +15,12 @@ public class LoggerInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("Before calling to " + request.getRequestURI());
+        logger.info("Before calling to " + request.getMethod() + ":" + request.getRequestURI());
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        logger.info("After calling to " + request.getRequestURI());
+        logger.info("After calling to " + request.getMethod() + ":" + request.getRequestURI());
     }
 }
