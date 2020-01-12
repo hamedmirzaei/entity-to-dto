@@ -7,27 +7,26 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import spring.boot.entity.dto.configs.interceptor.LoggerInterceptor;
-import spring.boot.entity.dto.configs.interceptor.MaintenanceTimeInterceptor;
-import spring.boot.entity.dto.configs.interceptor.RequestLimitInterceptor;
-import spring.boot.entity.dto.configs.interceptor.RestCallForbiddenInterceptor;
+import spring.boot.entity.dto.configs.interceptor.*;
 
 @Configuration
 @EnableWebMvc
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
+    private final LoggerInterceptor loggerInterceptor;
+    private final SecurityInterceptor securityInterceptor;
+    private final RequestLimitInterceptor requestLimitInterceptor;
     private final RestCallForbiddenInterceptor restCallForbiddenInterceptor;
     private final MaintenanceTimeInterceptor maintenanceTimeInterceptor;
-    private final LoggerInterceptor loggerInterceptor;
-    private final RequestLimitInterceptor requestLimitInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loggerInterceptor).order(Ordered.HIGHEST_PRECEDENCE);
-        registry.addInterceptor(requestLimitInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 1);
-        registry.addInterceptor(restCallForbiddenInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 2);
-        registry.addInterceptor(maintenanceTimeInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 3);
+        registry.addInterceptor(securityInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 1);
+        registry.addInterceptor(requestLimitInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 2);
+        registry.addInterceptor(restCallForbiddenInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 3);
+        registry.addInterceptor(maintenanceTimeInterceptor).order(Ordered.HIGHEST_PRECEDENCE + 4);
     }
 
     @Override

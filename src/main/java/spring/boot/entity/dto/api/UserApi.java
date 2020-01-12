@@ -6,10 +6,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import spring.boot.entity.dto.annotations.Authorize;
 import spring.boot.entity.dto.annotations.Limited;
 import spring.boot.entity.dto.annotations.RestCallForbidden;
 import spring.boot.entity.dto.dto.EntityDtoResponse;
 import spring.boot.entity.dto.dto.UserDto;
+import spring.boot.entity.dto.enums.Role;
 import spring.boot.entity.dto.exception.UserException;
 import spring.boot.entity.dto.service.UserService;
 
@@ -53,6 +55,7 @@ public class UserApi {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "add a user", response = EntityDtoResponse.class)
+    @Authorize(roles = {Role.ADMIN})
     public EntityDtoResponse<UserDto> saveUser(@RequestBody UserDto userDto) throws UserException.DuplicateUsernameException {
         return userService.saveUser(userDto);
     }
