@@ -1,29 +1,29 @@
 package spring.boot.entity.dto.enums.converter;
 
-import spring.boot.entity.dto.enums.ErrorCode;
+import spring.boot.entity.dto.enums.ResponseCode;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import java.util.stream.Stream;
 
 @Converter(autoApply = true)
-public class ErrorCodeConverter implements AttributeConverter<ErrorCode, String> {
+public class ErrorCodeConverter implements AttributeConverter<ResponseCode, String> {
 
     @Override
-    public String convertToDatabaseColumn(ErrorCode errorCode) {
-        if (errorCode == null) {
+    public String convertToDatabaseColumn(ResponseCode responseCode) {
+        if (responseCode == null) {
             return null;
         }
-        return errorCode.getCode();
+        return responseCode.getCode();
     }
 
     @Override
-    public ErrorCode convertToEntityAttribute(String code) {
+    public ResponseCode convertToEntityAttribute(String code) {
         if (code == null) {
             return null;
         }
 
-        return Stream.of(ErrorCode.values())
+        return Stream.of(ResponseCode.values())
                 .filter(s -> s.getCode().equals(code))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);

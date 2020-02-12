@@ -1,7 +1,7 @@
 package spring.boot.entity.dto.service;
 
-import spring.boot.entity.dto.dto.AddressDto;
-import spring.boot.entity.dto.dto.EntityDtoResponse;
+import spring.boot.entity.dto.api.dto.AddressDto;
+import spring.boot.entity.dto.api.responses.ApplicationResponse;
 import spring.boot.entity.dto.exception.AddressException;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public interface AddressService {
      *
      * @return list of address DTOs
      */
-    EntityDtoResponse<List<AddressDto>> findAll();
+    ApplicationResponse<List<AddressDto>> findAll();
 
     /**
      * This method returns a specific address DTO
@@ -22,7 +22,7 @@ public interface AddressService {
      * @return the address DTO corresponding to {@code id}
      * @throws AddressException.NotFoundException in case no address exist with the input {@code id}
      */
-    EntityDtoResponse<AddressDto> findAddressById(Long id) throws AddressException.NotFoundException;
+    ApplicationResponse<AddressDto> findAddressById(Long id) throws AddressException.NotFoundException;
 
     /**
      * This method saves an address DTO
@@ -30,6 +30,6 @@ public interface AddressService {
      * @param addressDto the input address DTO
      * @return the saved address DTO
      */
-    EntityDtoResponse<AddressDto> saveAddress(AddressDto addressDto);
+    ApplicationResponse<AddressDto> saveAddress(AddressDto addressDto);
 
 }

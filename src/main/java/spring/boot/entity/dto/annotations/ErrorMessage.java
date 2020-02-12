@@ -1,6 +1,7 @@
 package spring.boot.entity.dto.annotations;
 
-import spring.boot.entity.dto.enums.ErrorCode;
+import spring.boot.entity.dto.enums.ResponseCode;
+import spring.boot.entity.dto.enums.ResponseMessageKey;
 
 import java.lang.annotation.*;
 
@@ -8,6 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface ErrorMessage {
-    ErrorCode code() default ErrorCode.UNKNOWN;
-    String messageKey() default "exception.default.message";
+    ResponseCode code() default ResponseCode.UNKNOWN_ERROR;
+
+    ResponseMessageKey messageKey() default ResponseMessageKey.UNKNOWN_ERROR;
 }

@@ -1,14 +1,15 @@
 package spring.boot.entity.dto.exception;
 
 import spring.boot.entity.dto.annotations.ErrorMessage;
-import spring.boot.entity.dto.enums.ErrorCode;
+import spring.boot.entity.dto.enums.ResponseCode;
+import spring.boot.entity.dto.enums.ResponseMessageKey;
 
 public class AddressException {
 
     private AddressException() {
     }
 
-    @ErrorMessage(code = ErrorCode.ADDRESS_NOT_FOUND, messageKey = "exception.address.not.found")
+    @ErrorMessage(code = ResponseCode.ADDRESS_NOT_FOUND_ERROR, messageKey = ResponseMessageKey.ADDRESS_NOT_FOUND_ERROR)
     public static class NotFoundException extends BaseException {
         private final Long id;
 

@@ -6,7 +6,7 @@ Content-Type: application/json
   "fullName": "Reza Mirzaei",
   "username": "rezamirzaei",
   "password": "abcd1234",
-  "addressDto": {
+  "saveAddressRequest": {
     "city": "Ilam",
     "street": "Edalat",
     "alley": "Adl 3",

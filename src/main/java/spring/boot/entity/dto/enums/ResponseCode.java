@@ -2,18 +2,18 @@ package spring.boot.entity.dto.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ErrorCode {
-    UNKNOWN("USR-XXXX"),
+public enum ResponseCode {
+    UNKNOWN_ERROR("USR-XXXX"),
     SUCCESS("USR-0000"),
     INTERNAL_SERVER_ERROR("USR-0001"),
-    USER_NOT_FOUND("USR-0002"),
-    DUPLICATE_USERNAME("USR-0003"),
-    ADDRESS_NOT_FOUND("USR-0004"),
-    ADDRESS_PERSIST_ERROR("USR-0005");
+    USER_NOT_FOUND_ERROR("USR-0002"),
+    DUPLICATE_USERNAME_ERROR("USR-0003"),
+    ADDRESS_NOT_FOUND_ERROR("USR-0004"),
+    VALIDATION_ERROR("USR-0005");
 
     String code;
 
-    ErrorCode(String code) {
+    ResponseCode(String code) {
         this.code = code;
     }
 

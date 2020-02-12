@@ -1,7 +1,8 @@
 package spring.boot.entity.dto.service;
 
-import spring.boot.entity.dto.dto.EntityDtoResponse;
-import spring.boot.entity.dto.dto.UserDto;
+import spring.boot.entity.dto.api.requests.SaveUserRequest;
+import spring.boot.entity.dto.api.responses.ApplicationResponse;
+import spring.boot.entity.dto.api.dto.UserDto;
 import spring.boot.entity.dto.exception.UserException;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface UserService {
      *
      * @return list of user DTOs
      */
-    EntityDtoResponse<List<UserDto>> findAll();
+    ApplicationResponse<List<UserDto>> findAll();
 
     /**
      * This method returns a specific user DTO
@@ -22,15 +23,17 @@ public interface UserService {
      * @return the user DTO corresponding to {@code id}
      * @throws UserException.NotFoundException in case no user exist with the input {@code id}
      */
-    EntityDtoResponse<UserDto> findUserById(Long id) throws UserException.NotFoundException;
+    ApplicationResponse<UserDto> findUserById(Long id) throws UserException.NotFoundException;
 
     /**
      * This method saves an user DTO
      *
-     * @param userDto the input user DTO
+     * @param saveUserRequest the input user info
      * @return the saved user DTO
-     * @throws UserException.DuplicateUsernameException in case which currently an user exist with username {@code userDto.username}
+     * @throws UserException.DuplicateUsernameException in case which currently an user
+     *                                                  exist with username {@code userDto.username}
      */
-    EntityDtoResponse<UserDto> saveUser(UserDto userDto) throws UserException.DuplicateUsernameException;
+    ApplicationResponse<UserDto> saveUser(SaveUserRequest saveUserRequest)
+            throws UserException.DuplicateUsernameException;
 
 }

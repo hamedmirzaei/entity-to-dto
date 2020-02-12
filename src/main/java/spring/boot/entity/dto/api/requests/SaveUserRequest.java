@@ -1,30 +1,32 @@
-package spring.boot.entity.dto.dto;
+package spring.boot.entity.dto.api.requests;
 
-import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import spring.boot.entity.dto.annotations.UsernameNotInPassword;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
+import javax.validation.constraints.Size;
 
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserDto implements Serializable {
+@UsernameNotInPassword
+/**
+ * the reason for not using lombok for getter and setters is because of mappers which have problem with it
+ */
+public class SaveUserRequest {
 
     @NotNull
-    @ApiModelProperty(notes = "first name concatenated by last name of user")
     private String fullName;
+
     @NotNull
-    @ApiModelProperty(notes = "username of user")
+    @Size(min = 5)
     private String username;
+
     @NotNull
     @Length(min = 5, max = 15)
-    @ApiModelProperty(notes = "password of user")
     private String password;
-    @ApiModelProperty(notes = "address of user")
-    private AddressDto addressDto;
-    @ApiModelProperty(notes = "skills of user separated by comma")
+
+    @Valid
+    private SaveAddressRequest saveAddressRequest;
+
     private String skills;
 
     public String getFullName() {
@@ -51,12 +53,12 @@ public class UserDto implements Serializable {
         this.password = password;
     }
 
-    public AddressDto getAddressDto() {
-        return addressDto;
+    public SaveAddressRequest getSaveAddressRequest() {
+        return saveAddressRequest;
     }
 
-    public void setAddressDto(AddressDto addressDto) {
-        this.addressDto = addressDto;
+    public void setSaveAddressRequest(SaveAddressRequest saveAddressRequest) {
+        this.saveAddressRequest = saveAddressRequest;
     }
 
     public String getSkills() {

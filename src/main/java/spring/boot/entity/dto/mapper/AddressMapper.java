@@ -4,8 +4,9 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
+import spring.boot.entity.dto.api.requests.SaveAddressRequest;
 import spring.boot.entity.dto.domain.AddressEntity;
-import spring.boot.entity.dto.dto.AddressDto;
+import spring.boot.entity.dto.api.dto.AddressDto;
 
 import java.util.List;
 
@@ -21,4 +22,7 @@ public interface AddressMapper {
 
     @InheritInverseConfiguration
     AddressEntity toEntity(AddressDto addressDto);
+
+    @InheritInverseConfiguration
+    AddressEntity toEntity(SaveAddressRequest saveAddressRequest);
 }

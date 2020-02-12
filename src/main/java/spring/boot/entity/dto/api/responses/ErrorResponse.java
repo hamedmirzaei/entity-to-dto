@@ -1,4 +1,4 @@
-package spring.boot.entity.dto.dto;
+package spring.boot.entity.dto.api.responses;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

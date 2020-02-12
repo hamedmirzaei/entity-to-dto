@@ -1,73 +1,77 @@
-package spring.boot.entity.dto.dto;
+package spring.boot.entity.dto.api.responses;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import spring.boot.entity.dto.enums.ErrorCode;
+import spring.boot.entity.dto.enums.ResponseCode;
 
 @Getter
 @Setter
-public class EntityDtoResponse<T> {
+public class ApplicationResponse<T> {
 
     @ApiModelProperty(notes = "The response code")
-    private ErrorCode messageCode;
+    private ResponseCode messageCode;
+
     @ApiModelProperty(notes = "The response description")
     private String description;
+
     @ApiModelProperty(notes = "The response value when it is a long")
     private Long longValue;
+
     @ApiModelProperty(notes = "The response value when it is a string")
     private String stringValue;
+
     @ApiModelProperty(notes = "The response value when it is an object")
     private T objectValue;
 
-    public EntityDtoResponse(ErrorCode messageCode, String description, Long longValue) {
+    public ApplicationResponse(ResponseCode messageCode, String description, Long longValue) {
         this.messageCode = messageCode;
         this.description = description;
         this.longValue = longValue;
     }
 
-    public EntityDtoResponse(ErrorCode messageCode, String description, String stringValue) {
+    public ApplicationResponse(ResponseCode messageCode, String description, String stringValue) {
         this.messageCode = messageCode;
         this.description = description;
         this.stringValue = stringValue;
     }
 
-    public EntityDtoResponse(ErrorCode messageCode, String description, T objectValue) {
+    public ApplicationResponse(ResponseCode messageCode, String description, T objectValue) {
         this.messageCode = messageCode;
         this.description = description;
         this.objectValue = objectValue;
     }
 
-    public EntityDtoResponse(ErrorCode messageCode, String description) {
+    public ApplicationResponse(ResponseCode messageCode, String description) {
         this.messageCode = messageCode;
         this.description = description;
     }
 
-    public EntityDtoResponse(Long longValue) {
+    public ApplicationResponse(Long longValue) {
         setSuccess();
         this.longValue = longValue;
     }
 
-    public EntityDtoResponse(String stringValue) {
+    public ApplicationResponse(String stringValue) {
         setSuccess();
         this.stringValue = stringValue;
     }
 
-    public EntityDtoResponse(T objectValue) {
+    public ApplicationResponse(T objectValue) {
         setSuccess();
         this.objectValue = objectValue;
     }
 
     private void setSuccess() {
-        this.messageCode = ErrorCode.SUCCESS;
+        this.messageCode = ResponseCode.SUCCESS;
         this.description = "Successfully done";
     }
 
-    public ErrorCode getMessageCode() {
+    public ResponseCode getMessageCode() {
         return messageCode;
     }
 
-    public void setMessageCode(ErrorCode messageCode) {
+    public void setMessageCode(ResponseCode messageCode) {
         this.messageCode = messageCode;
     }
 
