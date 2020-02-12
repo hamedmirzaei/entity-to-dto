@@ -3,9 +3,9 @@ package spring.boot.entity.dto.service;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import spring.boot.entity.dto.domain.AddressEntity;
 import spring.boot.entity.dto.api.dto.AddressDto;
 import spring.boot.entity.dto.api.responses.ApplicationResponse;
+import spring.boot.entity.dto.domain.AddressEntity;
 import spring.boot.entity.dto.exception.AddressException;
 import spring.boot.entity.dto.mapper.AddressMapper;
 import spring.boot.entity.dto.repository.AddressRepository;
@@ -36,7 +36,8 @@ public class AddressServiceImpl implements AddressService {
      */
     @Override
     public ApplicationResponse<AddressDto> findAddressById(Long id) throws AddressException.NotFoundException {
-        AddressEntity addressEntity = addressRepository.findById(id).orElseThrow(() -> new AddressException.NotFoundException(id));
+        AddressEntity addressEntity = addressRepository.findById(id)
+                .orElseThrow(() -> new AddressException.NotFoundException(id));
         AddressDto addressDto = AddressMapper.INSTANCE.toDTO(addressEntity);
         return new ApplicationResponse<>(addressDto);
     }

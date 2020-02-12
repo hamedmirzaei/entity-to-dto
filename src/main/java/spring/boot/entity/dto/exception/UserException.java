@@ -20,7 +20,8 @@ public class UserException {
         }
     }
 
-    @ErrorMessage(code = ResponseCode.DUPLICATE_USERNAME_ERROR, messageKey = ResponseMessageKey.DUPLICATE_USERNAME_ERROR)
+    @ErrorMessage(code = ResponseCode.DUPLICATE_USERNAME_ERROR,
+            messageKey = ResponseMessageKey.DUPLICATE_USERNAME_ERROR)
     public static class DuplicateUsernameException extends BaseException {
         private final String username;
 

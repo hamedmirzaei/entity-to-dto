@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CorsInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) {
         httpServletResponse.addHeader("Access-Control-Allow-Origin", "*");
         httpServletResponse.addHeader("Access-Control-Allow-Headers", "Content-Type");
         httpServletResponse.addHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT");

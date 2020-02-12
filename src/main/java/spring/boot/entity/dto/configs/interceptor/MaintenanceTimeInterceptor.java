@@ -28,7 +28,8 @@ public class MaintenanceTimeInterceptor implements HandlerInterceptor {
     private int timeTo;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
         // skip swaggers
         if (request.getRequestURI().contains("swagger"))
             return true;

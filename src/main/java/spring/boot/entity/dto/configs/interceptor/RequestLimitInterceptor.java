@@ -29,9 +29,11 @@ public class RequestLimitInterceptor implements HandlerInterceptor {
         } else {
             return true;
         }
-        if (method.isAnnotationPresent(Limited.class) || method.getDeclaringClass().isAnnotationPresent(Limited.class)) {
+        if (method.isAnnotationPresent(Limited.class) ||
+                method.getDeclaringClass().isAnnotationPresent(Limited.class)) {
 
-            Limited limitedData = method.isAnnotationPresent(Limited.class) ? method.getAnnotation(Limited.class) : method.getDeclaringClass().getAnnotation(Limited.class);
+            Limited limitedData = method.isAnnotationPresent(Limited.class) ?
+                    method.getAnnotation(Limited.class) : method.getDeclaringClass().getAnnotation(Limited.class);
 
             String ipAddress = request.getHeader("X-FORWARDED-FOR");
             if (ipAddress == null) {
@@ -43,7 +45,8 @@ public class RequestLimitInterceptor implements HandlerInterceptor {
                     .map(Class::getSimpleName)
                     .collect(Collectors.joining(","));
 
-            String key = method.getDeclaringClass().getSimpleName() + "." + method.getName() + "(" + params + ")-" + ipAddress;
+            String key = method.getDeclaringClass().getSimpleName() +
+                    "." + method.getName() + "(" + params + ")-" + ipAddress;
 
             if (!requests.containsKey(key)) {
                 requests.put(key, new ArrayList<>());
@@ -53,9 +56,11 @@ public class RequestLimitInterceptor implements HandlerInterceptor {
             Date nowDate = new Date();
             list.add(nowDate);// add current request to the list of requests
             Date start = new Date(nowDate.getTime() - 60000);
-            long count = list.stream().filter(x -> x.after(start)).count();// count number of requests since the last 60 secs
+            // count number of requests since the last 60 secs
+            long count = list.stream().filter(x -> x.after(start)).count();
 
-            list.removeAll(list.stream().filter(x -> x.before(start)).collect(Collectors.toList()));// remove all the requests aged more than 60 secs
+            // remove all the requests aged more than 60 secs
+            list.removeAll(list.stream().filter(x -> x.before(start)).collect(Collectors.toList()));
 
             if (count > limitedData.requestsPerMinute()) {
                 response.setStatus(429);

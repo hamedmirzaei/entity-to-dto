@@ -9,7 +9,8 @@ public class AddressException {
     private AddressException() {
     }
 
-    @ErrorMessage(code = ResponseCode.ADDRESS_NOT_FOUND_ERROR, messageKey = ResponseMessageKey.ADDRESS_NOT_FOUND_ERROR)
+    @ErrorMessage(code = ResponseCode.ADDRESS_NOT_FOUND_ERROR,
+            messageKey = ResponseMessageKey.ADDRESS_NOT_FOUND_ERROR)
     public static class NotFoundException extends BaseException {
         private final Long id;
 

@@ -33,7 +33,9 @@ public class UserEntity implements Serializable {
     private AddressEntity address;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "USER_SKILL", joinColumns = {@JoinColumn(referencedColumnName = "ID", name = "USERID")}, inverseJoinColumns = {@JoinColumn(referencedColumnName = "ID", name = "SKILLID")})
+    @JoinTable(name = "USER_SKILL",
+            joinColumns = {@JoinColumn(referencedColumnName = "ID", name = "USERID")},
+            inverseJoinColumns = {@JoinColumn(referencedColumnName = "ID", name = "SKILLID")})
     private List<SkillEntity> skills;
 
     public Long getId() {

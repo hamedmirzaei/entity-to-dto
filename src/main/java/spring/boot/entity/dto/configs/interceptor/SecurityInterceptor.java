@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 @Component
 public class SecurityInterceptor implements HandlerInterceptor {
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         HandlerMethod handlerMethod;
         Method method;
         if (handler instanceof HandlerMethod) {
@@ -23,8 +23,11 @@ public class SecurityInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        if (method.isAnnotationPresent(Authorize.class) || method.getDeclaringClass().isAnnotationPresent(Authorize.class)) {
-            Role[] requiredRoles = method.getAnnotation(Authorize.class) != null ? method.getAnnotation(Authorize.class).roles() : method.getDeclaringClass().getAnnotation(Authorize.class).roles();
+        if (method.isAnnotationPresent(Authorize.class) ||
+                method.getDeclaringClass().isAnnotationPresent(Authorize.class)) {
+            Role[] requiredRoles = method.getAnnotation(Authorize.class) != null ?
+                    method.getAnnotation(Authorize.class).roles() :
+                    method.getDeclaringClass().getAnnotation(Authorize.class).roles();
             // when no role is defined then the default behaviour is to consider all the roles as authorized
             if (requiredRoles == null || requiredRoles.length == 0) {
                 requiredRoles = Role.values();
